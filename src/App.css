@@ -1,0 +1,9 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  color: white;
+  font-weight: 400;
+  scroll-behavior: smooth;
+  /* background-color: #111111; */
+}
