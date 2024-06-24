@@ -2,11 +2,12 @@ import React from 'react';
 import { Theme } from '../themes/index';
 
 const Section = ({ id, title, spanTitle, content, imageSrc, imageAlt, reverse = false, buttonText, contactInfo }) => {
+
     const titleClass = buttonText ? 'text-5xl font-bold' : 'text-4xl font-bold';
-    const contentClass = buttonText ? 'text-4xl' : 'text-2xl';
+    const contentClass = buttonText ? 'text-3xl' : 'text-xl';
 
     return (
-        <section id={id} className={`min-h-dvh w-screen flex flex-col gap-8 px-4 py-24 justify-center items-center ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} md:px-12`}>
+        <section id={id} className={`min-h-dvh flex flex-col gap-8 px-4 py-24 justify-center items-center ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} md:px-12`}>
             <div className='h-full w-full flex flex-col gap-8 justify-center items-center text-center md:text-start md:items-start'>
                 <h1 className={titleClass}>{title}<span className='font-bold text-textColor'>{spanTitle}</span></h1>
                 <p className={contentClass}>{content}</p>
@@ -17,15 +18,15 @@ const Section = ({ id, title, spanTitle, content, imageSrc, imageAlt, reverse = 
                     </button>
                 )}
                 {contactInfo && (
-                    <div>
+                    <div className='flex flex-col gap-6'>
                         {contactInfo.email && (
-                            <h1 className='text-2xl'>
-                                <a href={`mailto:${contactInfo.email}`}>Email - {contactInfo.email}</a>
+                            <h1 className='text-xl'>
+                                <a href={`mailto:${contactInfo.email}`}><span className='text-textColor'>{contactInfo.email}</span></a>
                             </h1>
                         )}
                         {contactInfo.phone && (
-                            <h1 className='text-2xl'>
-                                <a href={`tel:${contactInfo.phone}`}>Phone - {contactInfo.phone}</a>
+                            <h1 className='text-xl'>
+                                <a href={`tel:${contactInfo.phone}`}><span className='text-textColor'>{contactInfo.phone}</span></a>
                             </h1>
                         )}
                     </div>
