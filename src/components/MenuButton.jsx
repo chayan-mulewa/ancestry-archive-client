@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Button({ toggleNav, isOpen }) {
+function MenuButton({ toggleNav, isOpen }) {
     return (
         <button
             style={{
@@ -51,4 +51,4 @@ function Button({ toggleNav, isOpen }) {
     );
 }
 
-export default Button;
+export default MenuButton;

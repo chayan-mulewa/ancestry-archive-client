@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { IsValidToken } from '../utils/index';
 import { Server } from '../config/index';
+import { Loading } from '../components/index';
 import axios from 'axios';
 
 const DataContext = createContext();
@@ -9,8 +10,9 @@ export const useDataContext = () => useContext(DataContext);
 
 export const DataProvider = ({ children }) => {
 
-    const [myDetails, setMyDetails] = useState([]);
+    const [userDetails, setUserDetails] = useState([]);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -19,7 +21,7 @@ export const DataProvider = ({ children }) => {
                     const isValidTokenResult = await IsValidToken();
                     if (isValidTokenResult) {
                         const token = document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1];
-                        const response = await axios.get(Server.usersURL + '/details', {
+                        const response = await axios.get(Server.userURL + '/token', {
                             headers: {
                                 Authorization: `Bearer ${token}`
                             },
@@ -32,6 +34,9 @@ export const DataProvider = ({ children }) => {
             } catch (error) {
 
             }
+            finally {
+                await setIsLoading(false);
+            }
         };
         fetchData();
 
@@ -43,8 +48,12 @@ export const DataProvider = ({ children }) => {
     }, []);
 
     return (
-        <DataContext.Provider value={{ myDetails, setMyDetails, isAuthenticated }}>
-            {children}
+        <DataContext.Provider value={{ userDetails, setUserDetails, isAuthenticated, setIsAuthenticated, isLoading }}>
+            {!isLoading ? (
+                children
+            ) : (
+                <Loading />
+            )}
         </DataContext.Provider>
     );
 };

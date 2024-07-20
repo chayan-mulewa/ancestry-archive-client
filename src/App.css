@@ -1,9 +1,58 @@
 * {
   padding: 0px;
   margin: 0px;
-  box-sizing: border-box;
-  color: white;
   font-weight: 400;
-  scroll-behavior: smooth;
-  /* background-color: #111111; */
+  box-sizing: border-box;
+  /* scroll-behavior: smooth; */
+}
+
+@keyframes loader_5191 {
+  from {
+    @apply opacity-0;
+  }
+
+  to {
+    @apply opacity-100;
+  }
+}
+
+.square {
+  @apply w-2.5 h-2.5 absolute mt-[-5px] ml-[-5px] left-2/4 top-2/4;
+  background: #0be88f;
+}
+
+#sq1 {
+  @apply mt-[-25px] ml-[-25px] animate-[loader\_5191_675ms_ease-in-out_0s_infinite_alternate];
+}
+
+#sq2 {
+  @apply mt-[-25px] animate-[loader\_5191_675ms_ease-in-out_75ms_infinite_alternate];
+}
+
+#sq3 {
+  @apply mt-[-25px] animate-[loader\_5191_675ms_ease-in-out_150ms_infinite] ml-[15px];
+}
+
+#sq4 {
+  @apply ml-[-25px] animate-[loader\_5191_675ms_ease-in-out_225ms_infinite];
+}
+
+#sq5 {
+  @apply animate-[loader\_5191_675ms_ease-in-out_300ms_infinite];
+}
+
+#sq6 {
+  @apply animate-[loader\_5191_675ms_ease-in-out_375ms_infinite] ml-[15px];
+}
+
+#sq7 {
+  @apply ml-[-25px] animate-[loader\_5191_675ms_ease-in-out_450ms_infinite] mt-[15px];
+}
+
+#sq8 {
+  @apply animate-[loader\_5191_675ms_ease-in-out_525ms_infinite] mt-[15px];
+}
+
+#sq9 {
+  @apply animate-[loader\_5191_675ms_ease-in-out_600ms_infinite] ml-[15px] mt-[15px];
 }

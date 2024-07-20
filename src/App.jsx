@@ -1,17 +1,24 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Home } from './pages/index';
+import { Suspense } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {useSmoothScroll} from 'momentumfx';
+import { appRoute } from './routes/index';
+import { Loading } from './components/index';
 import './App.css';
 import './index.css';
 
 function App() {
 
+  const [smoothScroll] = useSmoothScroll();
+
+  smoothScroll(0.04, 0.02,4);
+
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/home' element={<Home />} />
-        <Route path='*' element={<div className='h-screen w-screen flex justify-center items-center text-xl font-bold bg-gray-600 text-white'>404 PAGE NOT FOUND</div>} />
-      </Routes>
+      <Suspense fallback={<Loading/>}>
+        <Routes>
+          {appRoute.map((route, index) => (<Route key={index} c path={route.path} exact={route.exact} element={route.element} />))}
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }
